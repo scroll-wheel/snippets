@@ -1,0 +1,54 @@
+diff --git a/otp/launcher/LauncherBase.py b/otp/launcher/LauncherBase.py
+index b10bc7c..0bb6351 100644
+--- a/otp/launcher/LauncherBase.py
++++ b/otp/launcher/LauncherBase.py
+@@ -52,10 +52,11 @@ class LauncherBase(DirectObject):
+             ltime[4],
+             ltime[5])
+         logPrefix = self.getLogFileName() + '-'
+-        if not os.path.exists('logs/'):
+-            os.makedirs('logs/')
+-        logfile = os.path.join('logs', logPrefix + logSuffix + '.log')
+-        self.errorfile = 'errorCode'
++        logdir = os.path.expanduser('~/.local/share/toontown')
++        os.makedirs(logdir, exist_ok=True)
++        os.makedirs(os.path.join(logdir, 'news'), exist_ok=True)
++        logfile = os.path.join(logdir, logPrefix + logSuffix + '.log')
++        self.errorfile = os.path.join(logdir, 'errorCode')
+         log = open(logfile, 'a')
+         logOut = LogAndOutput(sys.__stdout__, log)
+         logErr = LogAndOutput(sys.__stderr__, log)
+diff --git a/otp/settings/Settings.py b/otp/settings/Settings.py
+index 9918750..090cd50 100644
+--- a/otp/settings/Settings.py
++++ b/otp/settings/Settings.py
+@@ -6,7 +6,7 @@ class Settings:
+ 
+     def __init__(self):
+         self.__settings = {}
+-        self.__filename = 'useropt.json'
++        self.__filename = os.path.expanduser('~/.config/toontown/useropt.json')
+ 
+     def doSavedSettingsExist(self):
+         return os.path.exists(self.__filename)
+@@ -23,6 +23,7 @@ class Settings:
+             self.__settings = {}
+ 
+     def writeSettings(self):
++        os.makedirs(os.path.expanduser('~/.config/toontown/'), exist_ok=True)
+         with open(self.__filename, 'w+') as f:
+             json.dump(self.__settings, f, indent=4)
+ 
+diff --git a/toontown/shtiker/DirectNewsFrame.py b/toontown/shtiker/DirectNewsFrame.py
+index 72f8147..b30def5 100644
+--- a/toontown/shtiker/DirectNewsFrame.py
++++ b/toontown/shtiker/DirectNewsFrame.py
+@@ -16,7 +16,7 @@ class DirectNewsFrame(DirectObject.DirectObject):
+     TaskChainName = 'RedownladTaskChain'
+     RedownloadTaskName = 'RedownloadNewsTask'
+     NewsBaseDir = ConfigVariableString('news-base-dir', '/httpNews').value
+-    NewsStageDir = ConfigVariableString('news-stage-dir', 'news').value
++    NewsStageDir = ConfigVariableString('news-stage-dir', os.path.expanduser('~/.local/share/toontown/news')).value
+     FrameDimensions = (-1.30666637421,
+      1.30666637421,
+      -0.751666665077,

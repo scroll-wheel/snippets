@@ -1,0 +1,13 @@
+diff --git a/makepanda/makewheel.py b/makepanda/makewheel.py
+index d8e6d386a0..e356ee509a 100644
+--- a/makepanda/makewheel.py
++++ b/makepanda/makewheel.py
+@@ -572,7 +572,7 @@ class WheelFile(object):
+         if GetVerbose():
+             print("Adding {0} from {1}".format(target_path, orig_source_path))
+ 
+-        zinfo = zipfile.ZipInfo.from_file(source_path, target_path)
++        zinfo = zipfile.ZipInfo.from_file(source_path, target_path, strict_timestamps=False)
+         zinfo.compress_type = self.zip_file.compression
+         if zinfo.date_time > self.max_date_time:
+             zinfo.date_time = self.max_date_time
