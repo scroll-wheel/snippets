@@ -1,0 +1,10 @@
+.board {
+    display: block;
+    position: relative;
+    background-color: oklch(90.1% 0.058 230.902);
+}
+
+.board__tile {
+    position: absolute;
+    transition: top 300ms, left 300ms;
+}
