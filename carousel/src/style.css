@@ -1,0 +1,40 @@
+.carousel {
+  display: block;
+  position: relative;
+
+  width: 768px;
+  margin-inline: auto;
+}
+
+.carousel__content {
+  display: flex;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding-left: 0;
+}
+
+.carousel__item {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 100%;
+  list-style: none;
+}
+
+.carousel__previous, .carousel__next {
+  cursor: pointer;
+}
+
+.carousel__previous--disabled, .carousel__next--disabled {
+  cursor: default;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: solid 1px black;
+  margin-inline: auto;
+  height: 300px;
+  width: 300px;
+}
