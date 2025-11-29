@@ -1,0 +1,11 @@
+.venv
+*.jpg
+*.jpeg
+*.jpe
+*.jif
+*.jfif
+*.jfi
+*.png
+*.txt
+!base_colors.txt
+!requirements.txt
