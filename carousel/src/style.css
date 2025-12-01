@@ -20,11 +20,13 @@
   list-style: none;
 }
 
-.carousel__previous, .carousel__next {
+.carousel__previous,
+.carousel__next {
   cursor: pointer;
 }
 
-.carousel__previous--disabled, .carousel__next--disabled {
+.carousel__previous--disabled,
+.carousel__next--disabled {
   cursor: default;
 }
 
